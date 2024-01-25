@@ -14,14 +14,12 @@ public class NameController {
         this.nameMapper = nameMapper;
     }
 
-    @GetMapping("/allnames")
-    public List<Name> getAll() {
-        return nameMapper.getAll();
-    }
-
     @GetMapping("/names")
-    public List<Name> getByNames(@RequestParam String startsWith) {
-        List<Name> names = nameMapper.getByNameStartsWith(startsWith);
-        return names;
+    public List<Name> getByNames(@RequestParam(required = false) String startsWith) {
+        if (startsWith != null) {
+            return nameMapper.getByNameStartsWith(startsWith);
+        } else {
+            return nameMapper.getAll();
+        }
     }
 }
