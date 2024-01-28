@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @RestController
 public class NameController {
@@ -21,12 +22,8 @@ public class NameController {
     }
 
     @GetMapping("/names")
-    public List<Name> getByNames(@RequestParam(required = false) String startsWith) {
-        if (startsWith != null) {
-            return nameService.getByNameStartsWith(startsWith);
-        } else {
-            return nameService.getAll();
-        }
+    public List<Name> getByNames(@RequestParam Optional<String> startsWith) {
+        return nameService.getByNameStartsWith(startsWith);
     }
 
     @ExceptionHandler(value = UserNotFoundException.class)
