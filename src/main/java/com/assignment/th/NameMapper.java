@@ -10,6 +10,6 @@ public interface NameMapper {
     @Select("SELECT * FROM names")
     List<Name> getAll();
 
-    @Select("SELECT * FROM names WHERE name LIKE CONCAT(#{prefix}, '%')")
-    List<Name> getByNameStartsWith(String prefix);
+//    @Select("SELECT * FROM names WHERE name LIKE CONCAT(#{prefix}, '%')")
+//    List<Name> getByNameStartsWith(String prefix);
 }

@@ -1,25 +1,20 @@
 package com.assignment.th;
 
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @RestController
 public class NameController {
-    private final NameMapper nameMapper;
+    private final NameService nameServiceer;
 
-    public NameController(NameMapper nameMapper) {
-        this.nameMapper = nameMapper;
+    public NameController(NameService nameServiceer) {
+        this.nameServiceer = nameServiceer;
     }
 
     @GetMapping("/names")
-    public List<Name> getByNames(@RequestParam(required = false) String startsWith) {
-        if (startsWith != null) {
-            return nameMapper.getByNameStartsWith(startsWith);
-        } else {
-            return nameMapper.getAll();
-        }
+    public List<Name> getByNames() {
+        return nameServiceer.getAll();
     }
 }
